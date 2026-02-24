@@ -10,7 +10,7 @@
   --stroke-color: rgba(255, 255, 255, 0.5);
   --surface-color: rgba(255, 255, 255, 0.1);
   --surface-color-hover: rgba(0, 0, 0, 0.02);
-  --highlight-color: (255, 255, 255, 0.2);
+  --highlight-color: rgba(255, 255, 255, 0.2);
   --switch-bg-url: url(./assets/MoonStars.svg)
 }
 
@@ -20,7 +20,7 @@
   --stroke-color: rgba(0, 0, 0, 0.5);
   --surface-color: rgba(0, 0, 0, 0.05);
   --surface-color-hover: rgba(0, 0, 0, 0.2);
-  --highlight-color: (0, 0, 0, 1);
+  --highlight-color: rgba(0, 0, 0, 0.1);
     --switch-bg-url: url(./assets/sun.svg)
 }
 
@@ -34,6 +34,7 @@ body {
   /*Dá pra fazer um atalho com tudo isso! Nessa ordem: background: color image repeat position/size
   */
   background: var(--bg-url) top center/cover;
+  height: 100vh;
 }
 
 body * {
@@ -41,8 +42,11 @@ body * {
   color: var(--text-color);
 }
 
+/* CONTAINER */
+
 #container {
-  width: 360px;
+  width: 100%;
+  max-width: 588px;
   padding: 0 24px;
   margin: 56px auto 0px auto;
 }
@@ -80,11 +84,15 @@ body * {
   transform: translateY(-50%);
   top: 50%;
   z-index: 1;
+  animation: slide-out .2s;
+}
+
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
 }
 
 .light #switch button {
-  right: 0;
-  left: initial;
+  animation: slide-in 0.2s forwards;
 }
 
 #switch span {
@@ -126,6 +134,8 @@ ul li a:hover {
   border: 1.5px solid var(--text-color);
 }
 
+/* SOCIAL LINKS */
+
 #social-links {
   display: flex;
   justify-content: center;
@@ -147,8 +157,41 @@ ul li a:hover {
   padding: 16px;
 }
 
+/* FOOTER */
+
 footer {
   padding: 24px;
   text-align: center;
   font-size: 14px;
+}
+
+/* AT-HULE */
+
+@media (min-width 700px) {
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
+  .light {
+    --bg-url: url(.assets/bg-desktop-light.jpg);
+  }
+}
+
+/* ANIMACOES */
+
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
 }
